@@ -449,8 +449,15 @@ classifier.lda</code></pre></div>
 ##   ..- attr(*, &quot;dimnames&quot;)=List of 2
 ##   .. ..$ : chr [1:223] &quot;5&quot; &quot;7&quot; &quot;8&quot; &quot;10&quot; ...
 ##   .. ..$ : chr &quot;LD1&quot;</code></pre>
+<p>We can compute a confusion matrix :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y_pred&lt;-<span class="kw">ifelse</span>(pred&gt;<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="dv">0</span>)
-<span class="co">#table(pred_lda$class,y_pred)</span></code></pre></div>
+y=y_pred[<span class="dv">1</span>:<span class="dv">223</span>]
+
+<span class="kw">table</span>(pred_lda$class,y)</code></pre></div>
+<pre><code>##    y
+##       0   1
+##   0 100  49
+##   1  45  29</code></pre>
 </div>
 
 

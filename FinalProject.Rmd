@@ -55,6 +55,7 @@ classifier <- glm(Survived ~ Age, family = binomial, data=training_set)
 summary(classifier)
 ```
 
+We can see the p-value is greater than 0,05, so we can conclude that Age is not a significant factor in the survivability.
 
 Now we can plot it using the ggplot2 library which gives us better visuals 
 
@@ -64,9 +65,6 @@ ggplot(training_set, aes(x=Age, y=Survived)) + geom_point() + stat_smooth(method
 plot(training_set$Age, training_set$Survived)
 curve(predict(classifier, data.frame(Age=x), type='response'), add=TRUE)
 ```
-
-We can see the p-value is greater than 0,05, so we can conclude that Sex is not a significant factor in the survivability.
-
 
 We can chose an other predict with Age, Sex and Pclass
 
@@ -111,9 +109,13 @@ classifier.lda$prior
 classifier.lda$means
 pred_lda=predict(classifier.lda,test_set[c(5,6)],type='response')
 str(pred_lda)
-y_pred<-ifelse(pred>0.5,1,0)
 ```
 
+We can compute a confusion matrix :
+
 ```{r Linear Discriminant Analysis b}
-table(pred_lda$class,y_pred)
+y_pred<-ifelse(pred>0.5,1,0)
+y=y_pred[1:223]
+
+table(pred_lda$class,y)
 ```
