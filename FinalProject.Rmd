@@ -21,7 +21,7 @@ The dataset we will analyze in this final project is about the Titanic and conta
 
 
 ```{r}
-data = read.csv("Titanic.csv")
+data = read.csv("C:/Users/Carine/Desktop/esilv/A4/Machine Learning/PW/Titanic.csv")
 ```
 
 ## Description of the dataset and the questions 
@@ -35,3 +35,55 @@ Willing to answer these questions we will dive in the dataset and analyze it :
 summary(data)
 ```
 
+## Logistic Regression
+
+We will study the dataset with a logistic regression to find the attributes which affect the survivability of poeple.
+
+```{r logistic regression a}
+library(caTools)
+set.seed(123)
+split = sample.split(data$Survived, SplitRatio = 0.75)
+training_set = subset(data, split == TRUE)
+test_set = subset(data, split == FALSE)
+```
+
+We will do a logistic regression model of Survived in function of Age.
+
+```{r logistic regression b}
+classifier <- glm(Survived ~ Age + Sex + Pclass, family = binomial, data=training_set)
+summary(classifier)
+```
+
+We can see the p-value is greater than 0,05, so Sex is not significant.
+
+
+We can chose an other predict with Age, Sex and Pclass
+
+```{r logistic regression c}
+library(caTools)
+set.seed(123)
+split = sample.split(data$Survived, SplitRatio = 0.75)
+training_set = subset(data, split == TRUE)
+test_set = subset(data, split == FALSE)
+classifier <- glm(Survived ~ Age + Sex + Pclass , family = binomial, data=training_set)
+summary(classifier)
+```
+
+Now the p-value is lower than 0,05 so the predict (Sex, Age and Pclass) is significant.
+
+We can do a confusion matrix to evaluate the predictions.
+
+```{r logistic regression d}
+pred=predict(classifier,training_set,type='response')
+mat<-ifelse(pred>0.5,1,0)
+#Pclass
+table(mat,training_set[,3])
+#Sex
+table(mat,training_set[,5])
+#Age : 0 for people<40, else 1
+t=ifelse(training_set[,6]>40,1,0)
+table(mat,t)
+
+```
+
+With this model, we can see more women are survived than men. It's the same case for young people. Moreover, there is no differnece between the classe of the people.
