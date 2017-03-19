@@ -105,8 +105,19 @@ Now, we will do a LDA model of Survived in function of Age and Sex.
 library(MASS)
 classifier.lda <- lda(Survived~Age+Sex, data=training_set)
 classifier.lda
+```
+```{r Linear Discriminant Analysis daaa}
 classifier.lda$prior
+```
+This shows only 38% people survived.
+
+```{r Linear Discriminant Analysis aaa}
 classifier.lda$means
+```
+
+We can see the most people who didn't survive are men (85%)
+
+```{r Linear Discriminant Analysis vaaa}
 pred_lda=predict(classifier.lda,test_set[c(5,6)],type='response')
 str(pred_lda)
 ```
@@ -119,3 +130,6 @@ y=y_pred[1:223]
 
 table(pred_lda$class,y)
 ```
+
+##Conclusion
+With this two methods we showed people who have survived are in majority women or young.
