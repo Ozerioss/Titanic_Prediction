@@ -251,13 +251,14 @@ div.tocify {
 
 <div id="description-of-the-problem" class="section level2">
 <h2>Description of the problem</h2>
-<p>The dataset we will analyze in this final project is about the Titanic and contains elements such as the passenger name and id, their gender, their age etc. And we wanted to analyze this data because some questions were raised and also to test our theory which is : Do some factors affect the survivability chance of the people on board ?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;C:/Users/Carine/Desktop/esilv/A4/Machine Learning/PW/Titanic.csv&quot;</span>)</code></pre></div>
+<p>The dataset we will analyze in this final project is about the Titanic and contains elements such as the passenger name and id, their gender, their age and wether they survived or not etc. And we wanted to analyze this data because some questions were raised and also to test our theory which is : Do some factors affect the survivability chance of the people on board ?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Titanic.csv&quot;</span>)</code></pre></div>
 </div>
 <div id="description-of-the-dataset-and-the-questions" class="section level2">
 <h2>Description of the dataset and the questions</h2>
 <p>Some interesting questions that deserve answering : What attribute affects the survivability of the people on board ? Which one can we conclude on that it is the main factor ?</p>
 <p>Willing to answer these questions we will dive in the dataset and analyze it :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(data)</code></pre></div>
 <pre><code>##   PassengerId       Survived          Pclass     
 ##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000  
 ##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000  
@@ -309,10 +310,9 @@ div.tocify {
 </div>
 <div id="logistic-regression" class="section level2">
 <h2>Logistic Regression</h2>
-<p>We will study the dataset with a logistic regression to find the attributes which affect the survivability of poeple.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caTools)</code></pre></div>
-<pre><code>## Warning: package 'caTools' was built under R version 3.2.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">123</span>)
+<p>We will study the dataset with a logistic regression to find the attributes which affect the survivability of the people on board.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(caTools)
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
 split =<span class="st"> </span><span class="kw">sample.split</span>(data$Survived, <span class="dt">SplitRatio =</span> <span class="fl">0.75</span>)
 training_set =<span class="st"> </span><span class="kw">subset</span>(data, split ==<span class="st"> </span><span class="ot">TRUE</span>)
 test_set =<span class="st"> </span><span class="kw">subset</span>(data, split ==<span class="st"> </span><span class="ot">FALSE</span>)</code></pre></div>
@@ -401,7 +401,7 @@ t=<span class="kw">ifelse</span>(training_set[,<span class="dv">6</span>]&gt;<sp
 ## mat   0   1
 ##   0 331 102
 ##   1 202  33</code></pre>
-<p>With this model, we can see more women are survived than men. It’s the same case for young people. Moreover, there is no differnece between the classe of the people.</p>
+<p>With this model, we can see more women survived than men. It’s the same case for young people. Moreover, there is no difference between the class of the people.</p>
 </div>
 
 

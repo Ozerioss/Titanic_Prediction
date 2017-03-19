@@ -17,11 +17,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Description of the problem
 
-The dataset we will analyze in this final project is about the Titanic and contains elements such as the passenger name and id, their gender, their age etc. And we wanted to analyze this data because some questions were raised and also to test our theory which is : Do some factors affect the survivability chance of the people on board ? 
+The dataset we will analyze in this final project is about the Titanic and contains elements such as the passenger name and id, their gender, their age and wether they survived or not etc. And we wanted to analyze this data because some questions were raised and also to test our theory which is : Do some factors affect the survivability chance of the people on board ? 
 
 
 ```{r}
-data = read.csv("C:/Users/Carine/Desktop/esilv/A4/Machine Learning/PW/Titanic.csv")
+data = read.csv("Titanic.csv")
 ```
 
 ## Description of the dataset and the questions 
@@ -31,13 +31,14 @@ What attribute affects the survivability of the people on board ? Which one can 
 
 Willing to answer these questions we will dive in the dataset and analyze it :
 
-```{r pressure, echo=FALSE}
+```{r}
 summary(data)
 ```
 
 ## Logistic Regression
 
-We will study the dataset with a logistic regression to find the attributes which affect the survivability of poeple.
+The logistic regression is a predictive analysis, it is used to describe data and to explain the relationship between one dependant binary variable which in our case is the survivability ( wether the person survived or not ) and other variables we have in our dataset.
+We will study the dataset with a logistic regression to find the attributes which affect the survivability of the people on board. 
 
 ```{r logistic regression a}
 library(caTools)
@@ -50,7 +51,7 @@ test_set = subset(data, split == FALSE)
 We will do a logistic regression model of Survived in function of Age.
 
 ```{r logistic regression b}
-classifier <- glm(Survived ~ Age + Sex + Pclass, family = binomial, data=training_set)
+classifier <- glm(Survived ~ Age, family = binomial, data=training_set)
 summary(classifier)
 ```
 
@@ -86,4 +87,4 @@ table(mat,t)
 
 ```
 
-With this model, we can see more women are survived than men. It's the same case for young people. Moreover, there is no differnece between the classe of the people.
+With this model, we can see more women survived than men. It's the same case for young people. Moreover, there is no difference between the class of the people.
