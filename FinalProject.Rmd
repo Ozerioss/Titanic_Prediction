@@ -55,7 +55,17 @@ classifier <- glm(Survived ~ Age, family = binomial, data=training_set)
 summary(classifier)
 ```
 
-We can see the p-value is greater than 0,05, so Sex is not significant.
+
+Now we can plot it using the ggplot2 library which gives us better visuals 
+
+```{r}
+library(ggplot2)
+ggplot(training_set, aes(x=Age, y=Survived)) + geom_point() + stat_smooth(method = "glm", method.args = list(family ="binomial"), se=FALSE)
+plot(training_set$Age, training_set$Survived)
+curve(predict(classifier, data.frame(Age=x), type='response'), add=TRUE)
+```
+
+We can see the p-value is greater than 0,05, so we can conclude that Sex is not a significant factor in the survivability.
 
 
 We can chose an other predict with Age, Sex and Pclass
@@ -87,4 +97,11 @@ table(mat,t)
 
 ```
 
-With this model, we can see more women survived than men. It's the same case for young people. Moreover, there is no difference between the class of the people.
+With this model, we can see that more women survived than men. It's the same case for young people. Moreover, there is no difference between the class of the people.
+
+
+
+
+```{r Linear Discriminant Analysis}
+
+```
