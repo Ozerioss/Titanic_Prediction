@@ -17,9 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Description of the problem
 
-We decided to analyze the titanic dataset because some questions were raised like : 
-
-Willing to answer these questions we will dive in the dataset and analyze it :
+The dataset we will analyze in this final project is about the Titanic and contains elements such as the passenger name and id, their gender, their age etc. And we wanted to analyze this data because some questions were raised and also to test our theory which is : Do some factors affect the survivability chance of the people on board ? 
 
 
 ```{r}
@@ -28,8 +26,10 @@ data = read.csv("Titanic.csv")
 
 ## Description of the dataset and the questions 
 
-Some interesting questions that deserve answering
+Some interesting questions that deserve answering : 
 What attribute affects the survivability of the people on board ? Which one can we conclude on that it is the main factor ? 
+
+Willing to answer these questions we will dive in the dataset and analyze it :
 
 ```{r pressure, echo=FALSE}
 summary(data)
