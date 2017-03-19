@@ -94,14 +94,26 @@ table(mat,training_set[,5])
 #Age : 0 for people<40, else 1
 t=ifelse(training_set[,6]>40,1,0)
 table(mat,t)
-
 ```
 
 With this model, we can see that more women survived than men. It's the same case for young people. Moreover, there is no difference between the class of the people.
 
 
+## Linear Discriminant Analysis
 
+Now, we will do a LDA model of Survived in function of Age and Sex.
 
-```{r Linear Discriminant Analysis}
+```{r Linear Discriminant Analysis a}
+library(MASS)
+classifier.lda <- lda(Survived~Age+Sex, data=training_set)
+classifier.lda
+classifier.lda$prior
+classifier.lda$means
+pred_lda=predict(classifier.lda,test_set[c(5,6)],type='response')
+str(pred_lda)
+y_pred<-ifelse(pred>0.5,1,0)
+```
 
+```{r Linear Discriminant Analysis b}
+table(pred_lda$class,y_pred)
 ```
