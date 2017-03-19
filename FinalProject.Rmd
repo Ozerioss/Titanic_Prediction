@@ -1,0 +1,37 @@
+---
+title: "Final_Project"
+author: "Karim Kidiss & Carine Lemaire"
+date: "19 mars 2017"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: readable
+    highlight: pygments
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description of the problem
+
+We decided to analyze the titanic dataset because some questions were raised like : 
+
+Willing to answer these questions we will dive in the dataset and analyze it :
+
+
+```{r}
+data = read.csv("Titanic.csv")
+```
+
+## Description of the dataset and the questions 
+
+Some interesting questions that deserve answering
+What attribute affects the survivability of the people on board ? Which one can we conclude on that it is the main factor ? 
+
+```{r pressure, echo=FALSE}
+summary(data)
+```
+
